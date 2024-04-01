@@ -144,7 +144,8 @@ class Data_Collator_for_Training(object):
             return tuple(torch.tensor(t) for t in [encoder_input_tensor, encoder_attention_mask_tensor, decoder_label_tensor])
 
 def get_tensor_dataset(split, tokenizer, args, counterfactual=False):
-    data_path = os.path.join('./data', args.dataset, '{}.jsonl'.format(split))
+    # data_path = os.path.join('./data', args.dataset, '{}.jsonl'.format(split))
+    data_path = os.path.join('./outputs', args.dataset, '{}.jsonl'.format(split))
 
     encoder_input_tensor = []
     encoder_attention_mask_tensor = []
