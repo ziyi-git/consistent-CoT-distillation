@@ -1,3 +1,4 @@
+import os
 import json
 import argparse
 import random
@@ -154,8 +155,8 @@ def main(args):
             input_seq1 = prompt.format(formatted_question, answer)
             input_seq2 = prompt.format(formatted_question, wrong_answer) # replace wrong_answer with "" if using empty string as the perturbed answer
             if args.debug:
+                print(input_seq1)
                 print(input_seq2)
-                print(input_seq3)
             generation = contrastive_decoding(input_seq1, input_seq2, model, tokenizer, indicator_token_ids, args)
 
             if "context" in example:
