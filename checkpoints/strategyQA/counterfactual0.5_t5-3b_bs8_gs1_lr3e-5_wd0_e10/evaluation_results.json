@@ -1,0 +1,14 @@
+{
+    "accuracy_inference": {
+        "accuracy_mean": 55.89519650655022,
+        "accuracy_std": 1.5377132630269859
+    },
+    "accuracy_oracle": {
+        "accuracy_mean": 88.12227074235807,
+        "accuracy_std": 2.3822151435783128
+    },
+    "accuracy_perturb": {
+        "accuracy_mean": 51.70305676855895,
+        "accuracy_std": 2.657663590341126
+    }
+}

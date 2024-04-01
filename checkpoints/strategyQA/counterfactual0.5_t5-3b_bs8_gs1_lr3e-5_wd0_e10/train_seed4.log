@@ -1,0 +1,12 @@
+2024/03/27 17:11:07: args: Namespace(dataset='strategyQA', save_dir='checkpoints/strategyQA/counterfactual0.5_t5-3b_bs8_gs1_lr3e-5_wd0_e10', debug=False, save_ckpt=False, add_task_prefix=True, model_name='t5-3b', max_enc_length=128, max_dec_length=128, train_batch_size=8, grad_step=1, learning_rate=3e-05, warmup_ratio=0.06, weight_decay=0.0, max_grad_norm=1.0, num_epoch=10.0, num_epoch_early_stopping=1, without_explanation=False, counterfactual_alpha=0.5, smoothing_factor=0, inference=False, evaluate=False, eval_split='test', eval_batch_size=32, sample=False, num_beams=1, top_k=0, top_p=1.0, num_return_sequences=1, overwrite_output=False, gpu=0, device=device(type='cuda', index=0))
+2024/03/27 17:13:21: Epoch: 000 Train loss: 1.3208 Counterfacual loss: 1.0260
+2024/03/27 17:13:38: Epoch: 000, dev loss 0.7599, perplexity 2.1331 best
+2024/03/27 17:15:46: Epoch: 001 Train loss: 0.7033 Counterfacual loss: 0.1438
+2024/03/27 17:16:44: Epoch: 001, dev loss 0.6665, perplexity 1.9368 best
+2024/03/27 17:18:52: Epoch: 002 Train loss: 0.5422 Counterfacual loss: 0.0638
+2024/03/27 17:18:58: Epoch: 002, dev loss 0.6737, perplexity 1.9470
+2024/03/27 17:21:06: Epoch: 003 Train loss: 0.4286 Counterfacual loss: 0.0199
+2024/03/27 17:21:12: Epoch: 003, dev loss 0.6751, perplexity 1.9508
+2024/03/27 17:21:25: Epoch: -01, inference accuracy: 53.7118
+2024/03/27 17:21:38: Epoch: -01, oracle accuracy: 87.3362
+2024/03/27 17:21:58: Epoch: -01, perturb accuracy: 50.2183
