@@ -4,7 +4,10 @@ dataset="strategyQA"
 model_name="t5-3b"
 max_enc_length=128
 max_dec_length=128
-train_batch_size=16
+# max_enc_length=256
+# max_dec_length=256
+# train_batch_size=16
+train_batch_size=8
 eval_batch_size=32
 grad_step=1
 learning_rate=3e-5
@@ -14,6 +17,7 @@ num_epoch=10
 num_epoch_early_stopping=1
 
 counterfactual_alpha=0.5
+# counterfactual_alpha=0.0
 
 save_dir="checkpoints/${dataset}/counterfactual${counterfactual_alpha}_${model_name}_bs${train_batch_size}_gs${grad_step}_lr${learning_rate}_wd${weight_decay}_e${num_epoch}"
 mkdir -p $save_dir
