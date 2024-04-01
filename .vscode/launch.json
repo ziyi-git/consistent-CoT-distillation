@@ -1,0 +1,32 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "--num_epoch_early_stopping", "1",
+                "--add_task_prefix",
+                "--counterfactual_alpha", "0.5",
+                "--dataset", "strategyQA",
+                "--save_dir", "checkpoints/strategyQA/counterfactual0.5_t5-3b_bs16_gs1_lr3e-5_wd0_e10",
+                "--model_name", "t5-3b",
+                "--max_enc_length", "128",
+                "--max_dec_length", "128",
+                "--train_batch_size", "8",
+                "--eval_batch_size", "32",
+                "--grad_step", "1",
+                "--learning_rate", "3e-5",
+                "--warmup_ratio", "0.06",
+                "--weight_decay", "0",
+                "--num_epoch", "10"
+            ]
+        }
+    ]
+}
