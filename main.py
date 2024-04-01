@@ -158,10 +158,16 @@ def inference_with_perturb(dataset, explanations, model, tokenizer, args, replac
     model.eval()
     for example in tqdm(dataset):
         input_seq = format_input(example.question, example.choices)
+        print("example.question: {}\n".format(example.question))
+        print("example.choices: {}\n".format(example.choices))
+        print("input_seq: {}\n".format(input_seq))
         answer_prefix = " So the answer is"
         answer_prefix_ids = tokenizer.encode(answer_prefix, add_special_tokens=False)
 
         inputs = tokenizer(input_seq, padding='max_length', max_length=args.max_enc_length, truncation=True, return_tensors='pt').to(args.device)
+        print("explanations: {}\n".format(explanations))
+        print("length of explanations: {}\n".format(len(explanations)))
+        print("example_idx: {}\n".format(example_idx))
         explanation_ids = tokenizer.encode(explanations[example_idx], add_special_tokens=False)
         explanation_length = len(explanation_ids)
         mask_idx = random.sample(range(explanation_length), int(explanation_length * replace_ratio))
@@ -170,6 +176,7 @@ def inference_with_perturb(dataset, explanations, model, tokenizer, args, replac
             decoder_input_ids = [tokenizer.pad_token_id] + tokenizer.encode('[factual]', add_special_tokens=False) + pert_explanation_ids + answer_prefix_ids
         else:
             decoder_input_ids = [tokenizer.pad_token_id] + pert_explanation_ids + answer_prefix_ids
+        print("decoder_input_ids: {}".format(decoder_input_ids))
         decoder_input_ids = torch.tensor([decoder_input_ids]).to(args.device)
         prediction = generation_with_prefix(inputs, decoder_input_ids, model, tokenizer, args)[0].strip()
         if prediction == example.answer:
@@ -249,6 +256,7 @@ def main(args, seed):
     loss_fct = torch.nn.CrossEntropyLoss(ignore_index=-100, label_smoothing=args.smoothing_factor)
     if args.debug:
         args.num_epoch = 1
+    # args.num_epoch = 1
     for epoch in trange(int(args.num_epoch), desc="Epoch"):
         train_loss = 0.
         counterfactual_loss = 0.
@@ -329,6 +337,8 @@ def main(args, seed):
         output_path = os.path.join(args.save_dir, '{}_seed{}.jsonl'.format(split, seed))
 
         accuracy, explanations = inference(testset, output_path, model, tokenizer, args)
+        print("00 testset length: {}\n".format(len(testset)))
+        print("00 explanations length: {}\n".format(len(explanations)))
         if split == 'test':
             return_result["accuracy_inference"] = accuracy
             log = 'Epoch: {:03d}, inference accuracy: {:.4f}'
